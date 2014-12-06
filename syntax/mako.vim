@@ -11,11 +11,7 @@
 " Known Limitations
 "   the <%text> block does not have correct attributes
 
-" For version 5.x: Clear all syntax items
-" For version 6.x: Quit when a syntax file was already loaded
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+if exists("b:current_syntax")
   finish
 endif
 
@@ -52,27 +48,16 @@ syn match makoDelim "</%\(def\|call\|namespace\)>"
 " Newline Escapes
 syn match makoEscape /\\$/
 
-" Default highlighting links
-if version >= 508 || !exists("did_mako_syn_inits")
-  if version < 508
-    let did_mako_syn_inits = 1
-    com -nargs=+ HiLink hi link <args>
-  else
-    com -nargs=+ HiLink hi def link <args>
-  endif
+" Set highlighting
+hi def link makoDocComment makoComment
+hi def link makoDefEnd makoDelim
 
-  HiLink makoDocComment makoComment
-  HiLink makoDefEnd makoDelim
-
-  HiLink makoAttributeKey Type
-  HiLink makoAttributeValue String
-  HiLink makoText Normal
-  HiLink makoDelim Preproc
-  HiLink makoEnd Keyword
-  HiLink makoComment Comment
-  HiLink makoEscape Special
-
-  delc HiLink
-endif
+hi def link makoAttributeKey Type
+hi def link makoAttributeValue String
+hi def link makoText Normal
+hi def link makoDelim Preproc
+hi def link makoEnd Keyword
+hi def link makoComment Comment
+hi def link makoEscape Special
 
 let b:current_syntax = "eruby"
