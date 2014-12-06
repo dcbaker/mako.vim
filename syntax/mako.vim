@@ -59,5 +59,3 @@ hi def link makoDelim Preproc
 hi def link makoEnd Keyword
 hi def link makoComment Comment
 hi def link makoEscape Special
-
-let b:current_syntax = "eruby"
