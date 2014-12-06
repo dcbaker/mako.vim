@@ -27,7 +27,8 @@ syn region makoNested start="{" end="}" transparent display contained contains=m
 syn region makoVariable matchgroup=makoDelim start=#\${# end=#}# contains=makoNested,@pythonTop
 
 " Comments
-syn region makoComment start="^\s*##" end="$"
+syn keyword makoTodo TODO XXX FIXME
+syn region makoComment start="^\s*##" end="$" contains=makoTodo
 syn region makoDocComment matchgroup=makoDelim start="<%doc>" end="</%doc>" keepend
 
 " Attribute Sublexing
