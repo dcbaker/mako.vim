@@ -7,9 +7,6 @@
 "
 " Thanks to Brine Rue <brian@lolapps.com> who noticed a bug in the
 " delimiter handling.
-"
-" Known Limitations
-"   the <%text> block does not have correct attributes
 
 if exists("b:current_syntax")
   finish
@@ -33,17 +30,14 @@ syn region makoVariable matchgroup=makoDelim start=#\${# end=#}# contains=makoNe
 syn region makoComment start="^\s*##" end="$"
 syn region makoDocComment matchgroup=makoDelim start="<%doc>" end="</%doc>" keepend
 
-" Literal Blocks
-syn region makoText matchgroup=makoDelim start="<%text[^>]*>" end="</%text>"
-
 " Attribute Sublexing
 syn match makoAttributeKey containedin=makoTag contained "[a-zA-Z_][a-zA-Z0-9_]*="
 syn region makoAttributeValue containedin=makoTag contained start=/"/ skip=/\\"/ end=/"/
 syn region makoAttributeValue containedin=MakoTag contained start=/'/ skip=/\\'/ end=/'/
 
 " Tags
-syn region makoTag matchgroup=makoDelim start="<%\(def\|call\|page\|include\|namespace\|inherit\)\>" end="/\?>"
-syn match makoDelim "</%\(def\|call\|namespace\)>"
+syn region makoTag matchgroup=makoDelim start="<%\(def\|call\|page\|include\|namespace\|inherit\|block\|text\)\>" end="/\?>"
+syn match makoDelim "</%\(def\|call\|namespace\|block\|text\)>"
 
 " Newline Escapes
 syn match makoEscape /\\$/
@@ -54,7 +48,6 @@ hi def link makoDefEnd makoDelim
 
 hi def link makoAttributeKey Type
 hi def link makoAttributeValue String
-hi def link makoText Normal
 hi def link makoDelim Preproc
 hi def link makoEnd Keyword
 hi def link makoComment Comment
