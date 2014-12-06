@@ -8,7 +8,7 @@
 " Thanks to Brine Rue <brian@lolapps.com> who noticed a bug in the
 " delimiter handling.
 
-if exists("b:current_syntax")
+if exists("b:current_syntax") && b:current_syntax == "mako"
   finish
 endif
 
@@ -53,3 +53,7 @@ hi def link makoDelim Preproc
 hi def link makoEnd Keyword
 hi def link makoComment Comment
 hi def link makoEscape Special
+
+if !exists("b:current_syntax")
+	let b:current_syntax = "mako"
+endif
